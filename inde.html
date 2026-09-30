@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحدي الأكل الصحي | اربح خصم 20% فوراً!</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#E52321',
+                            darkRed: '#BA1A1A',
+                            lightRed: '#FFF0F0',
+                            accent: '#FF4D4D',
+                            surface: '#FAFAFA'
+                        }
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-short': 'bounce 0.8s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts: Tajawal & Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #FAFAFA;
+            color: #1A1A1A;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism & Custom Shadows */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(229, 35, 33, 0.12);
+            box-shadow: 0 20px 40px -15px rgba(229, 35, 33, 0.08);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 20%, rgba(229, 35, 33, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        /* Modern Red Glow */
+        .btn-glow {
+            box-shadow: 0 8px 25px -5px rgba(229, 35, 33, 0.5);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 12px 30px -3px rgba(229, 35, 33, 0.7);
+            transform: translateY(-2px);
+        }
+
+        /* Timer Circular Progress */
+        .timer-circle {
+            transition: stroke-dashoffset 0.1s linear;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        /* Floating background elements */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAFAFA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E52321;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative bg-brand-surface selection:bg-brand-red selection:text-white">
+
+    <!-- Background Floating Glow Shapes -->
+    <div class="bg-shape w-96 h-96 bg-brand-red/10 top-0 right-0 -translate-y-1/2 translate-x-1/2"></div>
+    <div class="bg-shape w-80 h-80 bg-brand-accent/10 bottom-10 left-0 -translate-x-1/2"></div>
+
+    <!-- Header Navigation -->
+    <header class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-brand-red flex items-center justify-center text-white shadow-lg shadow-brand-red/30">
+                <i class="fa-solid fa-utensils text-2xl"></i>
+            </div>
+            <div>
+                <span class="text-2xl font-extrabold tracking-tight text-gray-900 block leading-none">FLOD <span class="text-brand-red">HEALTH</span></span>
+                <span class="text-xs text-gray-500 font-medium">وجبات صحية وطازجة يومياً</span>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <div class="hidden sm:flex items-center gap-2 bg-white/80 border border-brand-red/20 rounded-full px-4 py-1.5 shadow-sm">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-xs font-bold text-gray-700">التحدي متاح اليوم</span>
+            </div>
+            <a href="https://www.flod-sa.com/" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm font-bold text-brand-red bg-brand-lightRed border border-brand-red/30 hover:bg-brand-red hover:text-white px-4 py-2 rounded-full transition-all duration-300">
+                زيارة المتجر <i class="fa-solid fa-arrow-left text-xs mr-1"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="relative z-10 my-auto py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
+
+        <!-- VIEW 1: WELCOME SCREEN -->
+        <div id="welcomeScreen" class="text-center space-y-8 transition-all duration-500 hero-gradient py-8">
+            <!-- Animated Badge -->
+            <div class="inline-flex items-center gap-2 bg-brand-lightRed border border-brand-red/30 text-brand-red px-5 py-2 rounded-full shadow-sm text-sm font-bold animate-float">
+                <i class="fa-solid fa-fire text-brand-red"></i>
+                <span>تحدي المعلومات الصحية المباشر</span>
+                <span class="bg-brand-red text-white text-xs px-2 py-0.5 rounded-full font-black">خصم 20%</span>
+            </div>
+
+            <!-- Hero Headline -->
+            <div class="space-y-4 max-w-3xl mx-auto">
+                <h1 class="text-4xl sm:text-6xl font-black text-gray-900 leading-tight">
+                    ختبر معلوماتك الصحية <br class="hidden sm:inline">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-l from-brand-red to-brand-accent">واربح خصمك الفوري!</span>
+                </h1>
+                <p class="text-base sm:text-xl text-gray-600 font-medium max-w-2xl mx-auto leading-relaxed">
+                    جاوب على <span class="text-brand-red font-bold">3 أسئلة عشوائية</span> صحيحة خلال <span class="text-brand-red font-bold">15 ثانية لكل سؤال</span> واحصل على كود خصم 20% لطلب وجبتك الصحية القادمة من FLOD!
+                </p>
+            </div>
+
+            <!-- Challenge Rules Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto pt-4 text-right">
+                <div class="glass-card p-5 rounded-2xl flex items-center gap-4 hover:border-brand-red/40 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand-lightRed text-brand-red flex items-center justify-center shrink-0 font-bold text-xl">
+                        1
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900">3 أسئلة سريعة</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">تُختار عشوائياً من بنك يضم 100 سؤال صحي</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl flex items-center gap-4 hover:border-brand-red/40 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand-lightRed text-brand-red flex items-center justify-center shrink-0 font-bold text-xl">
+                        2
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900">15 ثانية لكل سؤال</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">السرعة والدقة هما مفتاح الفوز بخصمك</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl flex items-center gap-4 hover:border-brand-red/40 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand-lightRed text-brand-red flex items-center justify-center shrink-0 font-bold text-xl">
+                        3
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900">جائزة فورية 20%</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">احصل على الكود فور الإجابة الكاملة الصحيحة</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Primary Action Button -->
+            <div class="pt-6">
+                <button id="startQuizBtn" class="btn-glow bg-brand-red text-white text-lg sm:text-xl font-extrabold px-12 py-5 rounded-2xl inline-flex items-center gap-3 cursor-pointer group">
+                    <span>ابدأ التحدي الآن</span>
+                    <i class="fa-solid fa-play text-sm group-hover:-translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="pt-8 flex justify-center items-center gap-8 text-center text-xs sm:text-sm text-gray-500 border-t border-gray-200/60 max-w-xl mx-auto">
+                <div>
+                    <span class="block text-xl font-black text-gray-900">100+</span>
+                    <span>سؤال صحي متجدد</span>
+                </div>
+                <div class="h-8 w-px bg-gray-200"></div>
+                <div>
+                    <span class="block text-xl font-black text-brand-red">20%</span>
+                    <span>خصم فوري للرابحين</span>
+                </div>
+                <div class="h-8 w-px bg-gray-200"></div>
+                <div>
+                    <span class="block text-xl font-black text-gray-900">1,450+</span>
+                    <span>فائز هذا الأسبوع</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: QUIZ SCREEN -->
+        <div id="quizScreen" class="hidden max-w-2xl mx-auto transition-all duration-500">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+                
+                <!-- Quiz Header: Progress & Timer -->
+                <div class="flex items-center justify-between pb-6 mb-6 border-b border-gray-100">
+                    <!-- Progress Pill -->
+                    <div>
+                        <span class="text-xs font-bold text-brand-red uppercase tracking-wider block">التقدم</span>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span id="questionNumText" class="text-xl font-black text-gray-900">1</span>
+                            <span class="text-gray-400 font-bold">/ 3</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Dots -->
+                    <div class="flex gap-2" id="progressDots">
+                        <div class="w-3 h-3 rounded-full bg-brand-red animate-pulse"></div>
+                        <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                        <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                    </div>
+
+                    <!-- Circular Countdown Timer -->
+                    <div class="relative w-16 h-16 flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 36 36">
+                            <path
+                                class="text-gray-100 stroke-current"
+                                stroke-width="3.5"
+                                fill="none"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                            <path
+                                id="timerCircle"
+                                class="timer-circle text-brand-red stroke-current"
+                                stroke-dasharray="100, 100"
+                                stroke-dashoffset="0"
+                                stroke-width="3.5"
+                                stroke-linecap="round"
+                                fill="none"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                        </svg>
+                        <span id="timerText" class="absolute text-lg font-black text-gray-900">15</span>
+                    </div>
+                </div>
+
+                <!-- Question Text -->
+                <div class="mb-8 min-h-[90px] flex items-center">
+                    <h2 id="questionText" class="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
+                        جاري تحميل السؤال...
+                    </h2>
+                </div>
+
+                <!-- Options List -->
+                <div id="optionsContainer" class="space-y-3.5">
+                    <!-- Option Buttons Rendered via JS -->
+                </div>
+
+                <!-- Feedback Toast inside Quiz -->
+                <div id="feedbackBox" class="hidden mt-6 p-4 rounded-xl text-center font-bold text-sm transition-all"></div>
+            </div>
+        </div>
+
+        <!-- VIEW 3: SUCCESS RESULT SCREEN (DISCOUNT UNLOCKED) -->
+        <div id="successScreen" class="hidden text-center max-w-2xl mx-auto space-y-6 transition-all duration-500">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 shadow-2xl relative border-2 border-emerald-500/20">
+                
+                <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl shadow-lg mb-4 animate-bounce-short">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+
+                <div class="inline-block bg-emerald-50 text-emerald-700 text-xs font-bold px-4 py-1.5 rounded-full border border-emerald-200 mb-2">
+                    أحسنت! إجابات مثالية 3/3
+                </div>
+
+                <h2 class="text-3xl sm:text-5xl font-black text-gray-900">
+                    مبارك! حصلت على <span class="text-brand-red">خصم 20%</span>
+                </h2>
+                <p class="text-gray-600 text-sm sm:text-base max-w-md mx-auto mt-2">
+                    استخدم الكود التالي عند الطلب من موقع FLOD للتمتع بوجبات صحية شهية بأفضل سعر!
+                </p>
+
+                <!-- Coupon Box Card -->
+                <div class="my-8 bg-gradient-to-br from-brand-red to-brand-darkRed p-6 rounded-2xl text-white shadow-xl relative overflow-hidden group">
+                    <div class="absolute -left-10 -bottom-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+                    <div class="text-xs uppercase tracking-widest text-white/80 font-bold mb-1">كود الخصم الخاص بك</div>
+                    
+                    <div class="flex items-center justify-center gap-3 my-3">
+                        <span id="couponCode" class="text-3xl sm:text-4xl font-black tracking-wider bg-white/20 px-6 py-2 rounded-xl border border-white/30 select-all">
+                            FLOD20HEALTH
+                        </span>
+                    </div>
+
+                    <button id="copyCouponBtn" class="mt-2 text-xs font-bold bg-white text-brand-red hover:bg-gray-100 px-6 py-2.5 rounded-full shadow transition-all flex items-center gap-2 mx-auto active:scale-95">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>نسخ كود الخصم</span>
+                    </button>
+                </div>
+
+                <!-- Call to Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                    <a href="https://www.flod-sa.com/" target="_blank" class="btn-glow bg-brand-red text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-2 text-base">
+                        <span>اطلب الآن واستخدم الخصم</span>
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </a>
+                    <button id="restartBtnSuccess" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>لعب تحدي جديد</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 4: FAIL/RETRY SCREEN -->
+        <div id="failScreen" class="hidden text-center max-w-xl mx-auto space-y-6 transition-all duration-500">
+            <div class="glass-card rounded-3xl p-8 sm:p-10 shadow-2xl">
+                <div class="w-16 h-16 bg-red-100 text-brand-red rounded-full flex items-center justify-center mx-auto text-2xl shadow mb-4">
+                    <i class="fa-solid fa-heart-crack"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-900">
+                    فرصة سريعة أخرى!
+                </h2>
+                <p id="failReasonText" class="text-gray-600 text-sm sm:text-base mt-2">
+                    للأسف لم تتجاوز الاختبار بنجاح هذه المرة. للحصول على الخصم تحتاج لإجابة 3 أسئلة صحيحة متتالية.
+                </p>
+
+                <div class="my-6 p-4 bg-brand-lightRed/50 rounded-2xl border border-brand-red/10 text-right text-xs space-y-2">
+                    <span class="font-bold text-brand-red block text-sm">💡 نصيحة صحية:</span>
+                    <p class="text-gray-700">التغذية المتوازنة وشرب الماء الكافي يُحسّنان من تركيزك وسرعة بديهتك!</p>
+                </div>
+
+                <button id="restartBtnFail" class="btn-glow bg-brand-red text-white font-extrabold py-4 px-10 rounded-xl inline-flex items-center gap-3 text-base">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>حاول مرة أخرى الآن</span>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full bg-white border-t border-gray-100 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center sm:flex sm:justify-between sm:items-center text-xs text-gray-500">
+            <div class="mb-3 sm:mb-0">
+                مستوحى من هوية وتصميم <a href="https://www.flod-sa.com/" target="_blank" class="font-bold text-brand-red hover:underline">FLOD SA</a> | خيارات صحية ولذيذة
+            </div>
+            <div class="flex justify-center gap-4">
+                <span class="hover:text-brand-red cursor-pointer"><i class="fa-solid fa-shield-halved ml-1"></i> مسابقة صحية 100%</span>
+                <span class="hover:text-brand-red cursor-pointer"><i class="fa-solid fa-bolt ml-1"></i> خصومات فورية</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Full Pool of 100 Healthy Food Trivia Questions
+        const QUESTIONS_DATABASE = [
+            { question: "كم عدد السعرات الحرارية تقريباً في غرام واحد من الدهون؟", options: ["4 سعرات", "9 سعرات", "7 سعرات", "12 سعرة"], correct: 1 },
+            { question: "أي من الفيتامينات التالية يُعرف بـ 'فيتامين أشعة الشمس'؟", options: ["فيتامين C", "فيتامين B12", "فيتامين D", "فيتامين A"], correct: 2 },
+            { question: "ما هو الخضار الذي يحتوي على أعلى نسبة من الماء؟", options: ["الخيار", "الجزر", "البروكلي", "السبانخ"], correct: 0 },
+            { question: "أي من الأطعمة التالية يعتبر مصدراً ممتازاً لأوميغا 3 الصحية؟", options: ["الدجاج", "السمك السلمون", "الأرز الأبيض", "الجبن الأبيض"], correct: 1 },
+            { question: "ما هي الفاكهة التي تحتوي على نسبة بوتاسيوم عالية وتساعد على منع التشنجات العضلية؟", options: ["التفاح", "الموز", "الفراولة", "العنب"], correct: 1 },
+            { question: "أي من الدهون التالية تعتبر دهوناً صحية ومفيدة للقلب؟", options: ["الدهون المتحولة", "زيت الزيتون البكر", "السمن الصناعي", "الزيوت المكررة"], correct: 1 },
+            { question: "ما هو العنصر الغذائي الرئيسي المسؤول عن بناء وترميم العضلات في الجسم؟", options: ["الكربوهيدرات", "البروتين", "الدهون", "الألياف"], correct: 1 },
+            { question: "أي من الحبوب التالية يعتبر خالياً تماماً من الغلوتين بطبيعته؟", options: ["القمح", "الشعير", "الأرز", "الشوفان الملوث"], correct: 2 },
+            { question: "ما فائدة الألياف الغذائية الرئيسية في الجهاز الهضمي؟", options: ["زيادة الوزن", "تحسين الهضم وتنظيم السكر", "بناء العظام", "رفع ضغط الدم"], correct: 1 },
+            { question: "كم كمية الماء التي يُنصح بشربها يومياً بشكل عام للبالغين؟", options: ["1 لتر", "2 إلى 3 لتر", "5 لتر", "نصف لتر"], correct: 1 },
+            
+            { question: "أي من المكسرات التالية غني جداً بمضادات الأكسدة وفيتامين E؟", options: ["اللوز", "الفول السوداني المملح", "الجوز فقط", "الكاجو المقلي"], correct: 0 },
+            { question: "ما هو السكر الطبيعي الموجود في الفواكه؟", options: ["السكروز", "الفركتوز", "اللاكتوز", "المالتوز"], correct: 1 },
+            { question: "أي من الخضار التالية يحتوي على نسبة عالية من الحديد والسبانخ الشهير بها؟", options: ["السبانخ", "الكوسة", "الخيار", "البصل"], correct: 0 },
+            { question: "ما هو السكر الموجود طبيعياً في الحليب والألبان؟", options: ["الفركتوز", "اللاكتوز", "الجلينوكوز", "السكروز"], correct: 1 },
+            { question: "أي مما يلي يُعد من البقوليات الغنية بالبروتين النباتي؟", options: ["العدس", "الأرز", "الذرة", "الرقائق"], correct: 0 },
+            { question: "ما هي الفاكهة التي تُلقب بـ 'ملك الفواكه المشرقة' لغناها بالفيتامين C أكثر من البرتقال؟", options: ["الجوافة والكيوي", "التفاح", "الموز", "البطيخ"], correct: 0 },
+            { question: "ما هي الفائدة الأساسية لشرب الماء قبل الوجبة بـ 30 دقيقة؟", options: ["تسريع ضربات القلب", "المساعدة في الشبع وتقليل الأكل", "منع الامتصاص", "زيادة التعب"], correct: 1 },
+            { question: "أي من المؤشرات التالية يعبر عن سرعة رفع الغذاء لسكر الدم؟", options: ["المؤشر الجليسمي (GI)", "نسبة الدهون", "عدد السعرات", "كتلة الجسم"], correct: 0 },
+            { question: "ما هو النوع الصحي من الخبز المفيد للهضم والطاقة المستدامة؟", options: ["الخبز الأبيض", "خبز الحبوب الكاملة (البر)", "التوست الأبيض", "الكلاجون"], correct: 1 },
+            { question: "ما هي التوابل الشهيرة المضادة للالتهابات وتحتوي على الكوركومين؟", options: ["الكركم", "الفلفل الأسود", "الكمون", "القرفة"], correct: 0 },
+
+            { question: "ما الذي يحدث للوجبات عند طهيها عن طريق المشوي أو البخار مقارنة بالقلي؟", options: ["تزيد السعرات", "تقل الدهون والسعرات الحرارية", "تفقد البروتين", "تصبح ضارة"], correct: 1 },
+            { question: "أي الفواكه التالية تحتوي على دهون صحية غنية وناعمة؟", options: ["الأفوكادو", "التفاح", "البرتقال", "الخوخ"], correct: 0 },
+            { question: "ما هو الرمز الغذائي للحديد في الجسم الصادر من التغذية؟", options: ["Fe", "Ca", "Vit C", "Na"], correct: 0 },
+            { question: "أي الأطعمة التالية يساعد على تعزيز البكتيريا النافعة في الأمعاء (البروبيوتيك)؟", options: ["الزبادي واللبن الرائب", "المشروبات الغازية", "المقليات", "البطاطس الشيبس"], correct: 0 },
+            { question: "ما هي المادة التي تعطي الطماطم لونها الأحمر وتعتبر مضاد أكسدة قوي؟", options: ["الليكوبين", "الكاروتين", "الكلوروفيل", "اللاكتوز"], correct: 0 },
+            { question: "ما هو البديل الطبيعي الصحي للسكر الأبيض المكرر؟", options: ["عسل النحل الطبيعي والتمر", "الشراب الصناعي", "أسبارتام نقي", "المشروبات السكرية"], correct: 0 },
+            { question: "أي المشروبات التالية غني بمضادات الأكسدة ويساعد في تسريع الأيض؟", options: ["الشاي الأخضر", "الصودا", "العصائر المضاف لها سكر", "مشروبات الطاقة"], correct: 0 },
+            { question: "ما هي فائدة تناول وجبة تحتوي على بروتين وألياف بعد التمرين؟", options: ["استشفاء العضلات وشحن الطاقة", "زيادة الدهون", "إجهاد المعدة", "تقليل اللياقة"], correct: 0 },
+            { question: "أي مما يلي يُعد مصدراً حيوياً للكالسيوم لتقوية العظام؟", options: ["الحليب والسمسم والبروكلي", "المشروبات الغازية", "اللحوم الحمراء فقط", "الشاي"], correct: 0 },
+            { question: "ما هي النسبة الأكبر التي يتكون منها جسم الإنسان؟", options: ["الماء", "البروتين", "الدهون", "العظام"], correct: 0 },
+
+            { question: "ما هي فائدة تناول الشوفان في وجبة الفطور؟", options: ["إمداد الجسم بالطاقة الشديدة والشبع الطويل", "رفع السكر فوراً", "زيادة الوزن الخالي", "العطش الشديد"], correct: 0 },
+            { question: "أي من أنواع السمك التالية يعتبر قليل الدهون وغني بالبروتين الصافي؟", options: ["سمك الهامور والسي باس", "السمك المقلي بزيوت هدرجة", "الجمبري المسبك", "السمك المعلب بالزيت الذائب"], correct: 0 },
+            { question: "ما هو التوقيت الأفضل لتناول آخر وجبة قبل النوم للهضم المريح؟", options: ["قبل النوم بـ 2 إلى 3 ساعات", "مباشرة قبل النوم", "أثناء النوم", "قبل النوم بـ 6 ساعات"], correct: 0 },
+            { question: "ما هي فائدة حمض الفوليك الموجود في الخضراوات الورقية؟", options: ["نمو الخلايا وتجدد الدم", "تنعيم الشعر فقط", "زيادة الطول", "تقوية الأظافر فقط"], correct: 0 },
+            { question: "أي الأطعمة التالية يُنصح بها لتقوية جهاز المناعة؟", options: ["الحمضيات والمكسرات والثوم", "الوجبات السريعة", "المشروبات السكرية", "المعجنات البيضاء"], correct: 0 },
+            { question: "ما هي وظيفة مضادات الأكسدة في الجسم؟", options: ["حماية الخلايا من التلف والشيخوخة", "زيادة الوزن", "تخزين السكر", "إبطاء الهضم"], correct: 0 },
+            { question: "ما هو العنصر المهم لوظائف الثايرود (الدرقية) والموجود في الأغذية البحرية؟", options: ["اليود", "الصوديوم", "الكالسيوم", "الحديد"], correct: 0 },
+            { question: "أي من الفواكه المجففة التالية غني بالحديد والألياف والطاقة؟", options: ["التمر والزبيب", "الحلوى الجيلاتينية", "الموز المقلي", "السكر الخام"], correct: 0 },
+            { question: "ما هي خطورة كثرة استخدام الصوديوم (ملح الطعام)؟", options: ["ارتفاع ضغط الدم وحبس السوائل", "هبوط السكر", "هشاشة العظام مباشرة", "تساقط الشعر"], correct: 0 },
+            { question: "ما هو المشروب الطبيعي الذي يساعد على تهبيط الانتفاخ واسترخاء الهضم؟", options: ["النعناع والبابونج", "المشروبات الغازية", "القهوة المكثفة", "عصير الليمون المليء بالسكر"], correct: 0 },
+
+            { question: "أي من الأطعمة التالية يحتوي على نسبة عالية من الفيتامين A المفيد للبصر؟", options: ["الجزر واليقطين", "البطاطس البيضاء", "الأرز", "الخبز"], correct: 0 },
+            { question: "ما هي فائدة الزنجبيل للجهاز الهضمي؟", options: ["تخفيف الغثيان وتحسين الهضم", "زيادة الحموضة دائماً", "رفع الوزن", "الإمساك"], correct: 0 },
+            { question: "أي نوع من الأرز يعتبر أعلى بأليافه وقيمته الغذائية؟", options: ["الأرز البني / الأسمر", "الأرز الأبيض المكرر", "أرز البسمتي المعالج", "الأرز المقلي بالزيت"], correct: 0 },
+            { question: "ما هو مصدر البذور الغني جداً بأوميغا 3 والألياف عند نقعها في الماء؟", options: ["بذور الشيا", "بذور الذرة", "الرز", "القشاط"], correct: 0 },
+            { question: "ما هي السعرة الحرارية (Calorie)؟", options: ["وحدة قياس الطاقة في الطعام", "وزن الطعام بالغرام", "حجم الماء", "درجة حرارة الأكل"], correct: 0 },
+            { question: "أي مما يلي يساعد على الامتصاص الأفضل للحديد من المصادر النباتية؟", options: ["تناول فيتامين C مع الوجبة", "شرب الشاي مباشرة", "تناول الكالسيوم معها", "طهيها لفترة طويييلة جداً"], correct: 0 },
+            { question: "ما الفائدة الرئيسية للبذور مثل بذور الكتان والقرع؟", options: ["معادن وزيوت صحية وألياف", "دهون مضرة", "نشويات ناصعة", "سكريات متصاعدة"], correct: 0 },
+            { question: "أي من الوجبات التالية تُعتبر وجبة خفيفة (سناك) صحية ومغذية؟", options: ["حفنة مكسرات نية مع ثمرة فاكهة", "شيبس بطاطس", "قطعة كيك جاهزة", "مشروب غازي"], correct: 0 },
+            { question: "ما الذي يعنيه مصطلح 'المغذيات الكبرى' (Macronutrients)؟", options: ["البروتينات والكربوهيدرات والدهون", "الفيتامينات والمعادن", "الماء فقط", "الألياف فقط"], correct: 0 },
+            { question: "ما هي نسبة السكر الموصى بعدم تجاوزها يومياً من السكريات المضافة؟", options: ["أقل من 25-36 غرام", "100 غرام", "200 غرام", "لا يوجد حد"], correct: 0 },
+
+            // ... Additional 50 items covering deep nutrition trivia
+            { question: "ما الفاكهة التي تحتوي على إنزيم الباباين المساعد على هضم البروتين؟", options: ["البابايا", "التفاح", "التين", "الكمثرى"], correct: 0 },
+            { question: "أي الخضراوات التالية يُنصح بتناولها نية أو مطهية خفيفاً للحفاظ على فيتامين C؟", options: ["الفلفل الرومي الألوان", "البطاطا الحلوة", "الكوسة", "الباذنجان"], correct: 0 },
+            { question: "ما هي التمر الهندي واللبن الرائب من ناحية الفائدة الصيفية؟", options: ["ترطيب الجسم وإنعاش الهضم", "زيادة العطش", "رفع الحرارة", "زيادة الدهون"], correct: 0 },
+            { question: "ما هي فائدة الكينوا مقارنة بالأرز؟", options: ["بروتين كامل تحتوي كل الأحماض الأمينية", "دهون أعلى", "خالية من المعادن", "صعبة الهضم"], correct: 0 },
+            { question: "ما هو فيتامين B12 ومصدره الأساسي؟", options: ["فيتامين الأعصاب ومصدره المنتجات الحيوانية", "فيتامين ناتج من الشمس", "موجود في الفواكه فقط", "موجود في الملح"], correct: 0 },
+            { question: "أي الأطعمة التالية يحتوي على مادة البيتاكاروتين؟", options: ["البطاطا الحلوة والجزر", "الخبز الأبيض", "السمك", "الحليب"], correct: 0 },
+            { question: "ما هو تأثير تناول البروتين على الشبع؟", options: ["يرفع هرمونات الشبع ويقلل الجوع", "يسبب الجوع السريع", "لا يؤثر", "يقلل معدل الحرق"], correct: 0 },
+            { question: "أي من الزيوت التالية يتحمل درجات الحرارة العالية بشكل أفضل للطهي؟", options: ["زيت جوز الهند أو زيت الزيتون المخصص للطهي", "زيت الكتان", "زيت زهرة الشمس المكرر جداً", "الزبدة المحترقة"], correct: 0 },
+            { question: "ما هو الغذاء الطبيعي الملقب بـ 'الذهب السائل' لفوائده المضادة للبكتيريا؟", options: ["عسل النحل الطبيعي", "الزيت المغلي", "عصير العنب", "الخل المركز"], correct: 0 },
+            { question: "ما هي فوائد الثوم للجهاز الدوري؟", options: ["يساعد في خفض ضغط الدم والكوليسترول", "يرفع الضغط فوراً", "يقلل المناعة", "يسبب التجلط"], correct: 0 },
+
+            { question: "أي المشروبات التالية خالي تماماً من السعرات الحرارية؟", options: ["الماء والشاي الأسود بدون سكر", "عصير البرتقال الطبيعي", "الحليب كامل الدسم", "المشروب الرياضي"], correct: 0 },
+            { question: "ما هي أهمية البوتاسيوم في جسم الإنسان؟", options: ["توازن السوائل وتنظيم ضغط الدم", "بناء الشعر", "تلوين الجلد", "زيادة الوزن"], correct: 0 },
+            { question: "ما فائدة تناول طبق السلطة الملونة يومياً؟", options: ["تنوع الفيتامينات والألياف ومضادات الأكسدة", "زيادة الصوديوم", "تقليل الطاقة", "إضعاف المناعة"], correct: 0 },
+            { question: "أي من الفواكه التالية يُعد الأقل بسكر الفركتوز؟", options: ["التوت والفراولة", "العنب", "التين", "المانجو"], correct: 0 },
+            { question: "ما هو المركب الفعال في الشاي الأخضر المسؤول عن الفوائد الصحية؟", options: ["EGCG (مضاد أكسدة)", "اللاكتوز", "الكافيين فقط", "الجلوكوز"], correct: 0 },
+            { question: "ما فائدة البطاطا الحلوة مقارنة بالبطاطس العادية؟", options: ["مؤشر جليسمي أقل وأعلى بألياف وفيتامين A", "أعلى بالسكر المكرر", "خالية من الكربوهيدرات", "تسبب السمنة دائماً"], correct: 0 },
+            { question: "ما هي فائدة القرفة في تنظيم الغذاء؟", options: ["تحسين حساسية الانسولين وتنظيم سكر الدم", "رفع السكر", "زيادة الشهية للحلويات", "توقف الهضم"], correct: 0 },
+            { question: "أي من الأطعمة التالية يحتوي على المغنيسيوم المساعد على الاسترخاء والنوم؟", options: ["الشكولاتة الداكنة والمكسرات", "الوجبات السريعة", "المخللات", "المشروبات الغازية"], correct: 0 },
+            { question: "ما هو الخضار الورقي الغني بالمركبات الكبريتية والمفيد للبدن؟", options: ["البروكلي والملفوف", "الخيار", "الكوسة", "الخس العادي"], correct: 0 },
+            { question: "ما هي فائدة شرب الماء الدافئ مع الليمون صباحاً؟", options: ["تحفيز الجهاز الهضمي وانعاش الجسم", "حرق 1000 سعرة فجأة", "علاج كل الأمراض", "تثبيت الوزن"], correct: 0 },
+
+            { question: "أي الأطعمة التالية يساعد على صحة العينين والشبكية؟", options: ["السبانخ والبيض والجزر", "اللحوم المصنعة", "المعجنات", "السكريات"], correct: 0 },
+            { question: "ما فائدة حمض الليمون (الستريك) في الفواكه؟", options: ["امتصاص بعض المعادن والانعاش", "تكسير العظام", "تخزين الدهون", "زيادة التوتر"], correct: 0 },
+            { question: "ما هو المكون الأساسي لشوربة العظام الصحيحة؟", options: ["كولاجين ومعادن مغذية للمفاصل", "دهون متحولة", "سكريات", "كربوهيدرات معقدة"], correct: 0 },
+            { question: "ما هي فوائد التوت الأزرق (Blueberries) للذاكرة؟", options: ["غني بالفلافونويد الذي يحمي خلايا الدماغ", "يسبب النسيان", "يرفع الضغط", "يقلل التركيز"], correct: 0 },
+            { question: "ما الفائدة من تناول الأكل ببطء ومضغه جيداً؟", options: ["تحسين الهضم وإعطاء إشارة الشبع للمخ", "زيادة الوزن", "عسر الهضم", "فقدان الفيتامينات"], correct: 0 },
+            { question: "أي المكسرات يشبّه شكل الدماغ ويفيد صحة المخ بالفعل؟", options: ["عين الجمل (الجوز)", "الفستق", "البندق", "الكاجو"], correct: 0 },
+            { question: "ما هي فائدة الزبادي اليوناني مقارنة بالزبادي العادي؟", options: ["يحتوي على نسبة بروتين أعلى وسكر أقل", "أعلى بالسكر", "أقل بالبروتين", "خالي من الكالسيوم"], correct: 0 },
+            { question: "ما هو تأثير قلة النوم على الشهية والأكل؟", options: ["زيادة هرمون الجوع (الجريلين) والرغبة بالسكريات", "تقليل الشهية تماماً", "حرق الدهون بسرعة", "تنظيم السكر"], correct: 0 },
+            { question: "أي السوائل التالية يُعد الأفضل لإعادة الترطيب بعد رياضة مكثفة؟", options: ["الماء أو ماء جوز الهند الطبيعي", "المشروبات الغازية", "القهوة المركز جداً", "العصير الصناعي"], correct: 0 },
+            { question: "ما هي الفاكهة الغنية بإنزيم البروميلين المضاد للالتهابات والمساعد للهضم؟", options: ["الأناناس", "البطيخ", "البرتقال", "التفاح"], correct: 0 },
+
+            { question: "ما هي الكربوهيدرات المعقدة؟", options: ["بطيئة الهضم وتمد الطاقة لفترة طويلة", "سريعة الامتصاص وترفع السكر فجأة", "دهون ضارة", "بروتينات نية"], correct: 0 },
+            { question: "أي من التالي يصف الوجبة الصحية المتوازنة؟", options: ["بروتين + ألياف وخضار + كربوهيدرات معقدة + دهون صحية", "نشويات فقط", "بروتين بدون أي شيء", "دهون فقط"], correct: 0 },
+            { question: "ما هي فائدة تناول بذور عباد الشمس النية؟", options: ["غنية بفيتامين E والمغنيسيوم", "رفع الضغط جداً", "زيادة الدهون الضارة", "تدمير الهضم"], correct: 0 },
+            { question: "ما الذي يساعد على تقليل معدل الاصابة بالسكري من النوع الثاني؟", options: ["الرياضة المنتظمة والأكل المتوازن الغني بالألياف", "كثرة السكريات", "النوم القليل", "الوجبات السريعة"], correct: 0 },
+            { question: "ما الفائدة من تناول منتجات ألبان قليلة/معتدلة الدسم؟", options: ["الحصول على الكالسيوم والبروتين بسعرات أقل", "فقدان الكالسيوم", "زيادة السكر", "لا فائدة منها"], correct: 0 },
+            { question: "ما هو التوت الأسود والعليق من حيث الفائدة؟", options: ["أعلى الفواكه بالألياف ومضادات الأكسدة", "فقيرة جداً بالفيتامينات", "مليئة بالدهون", "تسبب السمنة"], correct: 0 },
+            { question: "ما وظيفة الصوديوم الأساسية في الجسم بكميات متوازنة؟", options: ["تنظيم التوازن المائي والإشارات العصبية", "بناء العضلات", "حرق الدهون", "تخزين السكر"], correct: 0 },
+            { question: "أي من التالي يعتبر مصدراً ممتازاً للبروتين النباتي؟", options: ["الحمص والفول والعدس", "الخيار", "التفاح", "الزيتون"], correct: 0 },
+            { question: "ما هو تأثير المشي لمدة 15 دقيقة بعد الوجبة؟", options: ["يساعد في تخفيض مستوى سكر الدم وتحسين الهضم", " يسبب كسل المعدة", "يزيد الوزن", "يوقف الحرق"], correct: 0 },
+            { question: "ما هي فائدة أكل الفاكهة ثماراً كاملة بدلاً من عصرها؟", options: ["الاستفادة من الألياف وإبطاء امتصاص السكر", "زيادة السعرات", "صعوبة الهضم", "فقدان الفيتامين"], correct: 0 },
+
+            { question: "أي الفواكه التالية يُعرف ببطء أكسدته وغناه بفركتوز طبيعي رائع؟", options: ["الكمثرى", "الموز الناضج جداً", "العنب", "المانجو"], correct: 0 },
+            { question: "ما فائدة إدراج الأسماك الزيتية في النظام الغذائي مرتين أسبوعياً؟", options: ["دعم صحة الدماغ والقلب وتقليل الالتهاب", "زيادة الكوليسترول الضار", "ضعف الذاكرة", "زيادة الوزن الضار"], correct: 0 },
+            { question: "ما هي فائدة المشروم (الفطر) في التغذية؟", options: ["سعرات منخفضة وغني بمعادن وفيتامينات B و D", "مليء بالدهون", "خالي من أي قيمة", "يرفع السكر"], correct: 0 },
+            { question: "ما هو الخيار الصحيح للتحلية في العصائر الطازجة؟", options: ["بدون سكر مضاف أو بلمسة عسل خفيفة", "إضافة 3 ملاعق سكر أبيض", "شراب الفركتوز الصناعي", "الحليب المكثف المحلى"], correct: 0 },
+            { question: "ما معنى 'السعرات الحرارية الفارغة'؟", options: ["أطعمة غنية بالسعرات وخالية من القيمة الغذائية", "أطعمة لا تحتوي سعرات", "أطعمة صحية جداً", "الماء فقط"], correct: 0 },
+            { question: "ما هي فائدة تناول الشاي الأبيض أو الأخضر للشرينات؟", options: ["تحسين مرونة الأوعية الدموية", "تصلب الشرايين", "رفع الضغط الشديد", "حبس السوائل"], correct: 0 },
+            { question: "أي مما يلي يعتبر من الدهون الممنوعة والمضرة بالصحة؟", options: ["الدهون المتحولة والهدرجة جزئياً", "زيت الزيتون", "دهون الأفوكادو", "دهون المكسرات"], correct: 0 },
+            { question: "ما هي أهمية فيتامين C لإنتاج البروتين الهيكلي في البشرة؟", options: ["ضروري لبناء الكولاجين", "يدمر الكولاجين", "ليس له علاقة بالبشرة", "يسبب التجاعيد"], correct: 0 },
+            { question: "أي الأعشاب التالية تساعد على تخفيف القلق وتحسين جودة النوم؟", options: ["البابونج واللافندر", "الشاي الأسود الثقيل", "القهوة الإسبادريس", "مشروبات الطاقة"], correct: 0 },
+            { question: "ما هي الرسالة الأساسية لنظام FLOD الصحي؟", options: ["الأكل الصحي يمكن أن يكون شهياً، طازجاً، وسهل الحصول عليه!", " الحرمان التام من الطعام", "تناول الأكل الخالي من الطعم", "الاعتماد على المكملات فقط"], correct: 0 }
+        ];
+
+        // Game State Variables
+        let currentQuizQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timerInterval = null;
+        let timeLeft = 15;
+        const TOTAL_TIME = 15;
+        let isAnsweringAllowed = true;
+
+        // DOM Elements
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const quizScreen = document.getElementById('quizScreen');
+        const successScreen = document.getElementById('successScreen');
+        const failScreen = document.getElementById('failScreen');
+
+        const startQuizBtn = document.getElementById('startQuizBtn');
+        const restartBtnSuccess = document.getElementById('restartBtnSuccess');
+        const restartBtnFail = document.getElementById('restartBtnFail');
+
+        const questionNumText = document.getElementById('questionNumText');
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const timerText = document.getElementById('timerText');
+        const timerCircle = document.getElementById('timerCircle');
+        const progressDots = document.getElementById('progressDots');
+        const feedbackBox = document.getElementById('feedbackBox');
+        const copyCouponBtn = document.getElementById('copyCouponBtn');
+
+
+        // Event Listeners
+        startQuizBtn.addEventListener('click', startNewQuiz);
+        restartBtnSuccess.addEventListener('click', startNewQuiz);
+        restartBtnFail.addEventListener('click', startNewQuiz);
+        copyCouponBtn.addEventListener('click', copyCouponCode);
+
+        // Utility: Shuffle Array (Fisher-Yates)
+        function getRandomQuestions(count) {
+            const shuffled = [...QUESTIONS_DATABASE].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // Start New Quiz Session
+        function startNewQuiz() {
+            // Select 3 fresh random questions from 100 pool
+            currentQuizQuestions = getRandomQuestions(3);
+            currentQuestionIndex = 0;
+            score = 0;
+
+            // Hide all screens, show quiz
+            welcomeScreen.classList.add('hidden');
+            successScreen.classList.add('hidden');
+            failScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+
+            loadQuestion();
+        }
+
+        // Load Single Question
+        function loadQuestion() {
+            clearInterval(timerInterval);
+            isAnsweringAllowed = true;
+            feedbackBox.classList.add('hidden');
+
+            const currentQ = currentQuizQuestions[currentQuestionIndex];
+
+            // Update UI Counters
+            questionNumText.textContent = currentQuestionIndex + 1;
+            questionText.textContent = currentQ.question;
+
+            // Update Progress Dots
+            const dots = progressDots.children;
+            for (let i = 0; i < dots.length; i++) {
+                if (i === currentQuestionIndex) {
+                    dots[i].className = "w-3 h-3 rounded-full bg-brand-red animate-pulse";
+                } else if (i < currentQuestionIndex) {
+                    dots[i].className = "w-3 h-3 rounded-full bg-emerald-500";
+                } else {
+                    dots[i].className = "w-3 h-3 rounded-full bg-gray-200";
+                }
+            }
+
+            // Render Options
+            optionsContainer.innerHTML = '';
+            currentQ.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-right p-4 rounded-2xl bg-white border-2 border-gray-100 hover:border-brand-red/40 hover:bg-brand-lightRed/30 transition-all font-bold text-gray-800 flex items-center justify-between group active:scale-[0.99]";
+                btn.innerHTML = `
+                    <span class="text-base sm:text-lg">${opt}</span>
+                    <span class="w-8 h-8 rounded-xl bg-gray-100 group-hover:bg-brand-red group-hover:text-white flex items-center justify-center text-xs font-black transition-colors">
+                        ${String.fromCharCode(65 + idx)}
+                    </span>
+                `;
+                btn.addEventListener('click', () => handleAnswerSelect(idx, btn));
+                optionsContainer.appendChild(btn);
+            });
+
+            // Reset & Start 15-Second Timer
+            startTimer();
+        }
+
+        function startTimer() {
+            timeLeft = TOTAL_TIME;
+            updateTimerUI();
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerUI();
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    handleTimeOut();
+                }
+            }, 1000);
+        }
+
+        function updateTimerUI() {
+            timerText.textContent = timeLeft;
+            const strokeDashoffset = 100 - (timeLeft / TOTAL_TIME) * 100;
+            timerCircle.style.strokeDashoffset = strokeDashoffset;
+
+            if (timeLeft <= 5) {
+                timerText.classList.add('text-brand-red', 'animate-pulse');
+                timerCircle.classList.remove('text-brand-red');
+                timerCircle.classList.add('text-red-600');
+            } else {
+                timerText.classList.remove('text-brand-red', 'animate-pulse');
+                timerCircle.classList.add('text-brand-red');
+            }
+        }
+
+        function handleAnswerSelect(selectedIndex, selectedBtn) {
+            if (!isAnsweringAllowed) return;
+            isAnsweringAllowed = false;
+            clearInterval(timerInterval);
+
+            const currentQ = currentQuizQuestions[currentQuestionIndex];
+            const optionButtons = optionsContainer.querySelectorAll('button');
+
+            if (selectedIndex === currentQ.correct) {
+                // Correct Answer
+                score++;
+                selectedBtn.classList.remove('border-gray-100', 'hover:border-brand-red/40');
+                selectedBtn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+                selectedBtn.querySelector('span:last-child').className = "w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xs font-black";
+
+                showFeedback(true, "إجابة صحيحة! أحسنت ✨");
+            } else {
+                // Wrong Answer
+                selectedBtn.classList.remove('border-gray-100');
+                selectedBtn.classList.add('border-brand-red', 'bg-red-50', 'text-brand-red');
+                selectedBtn.querySelector('span:last-child').className = "w-8 h-8 rounded-xl bg-brand-red text-white flex items-center justify-center text-xs font-black";
+
+                // Highlight Correct Option
+                const correctBtn = optionButtons[currentQ.correct];
+                correctBtn.classList.add('border-emerald-500', 'bg-emerald-50');
+
+                showFeedback(false, `إجابة خاطئة! الإجابة الصحيحة: ${currentQ.options[currentQ.correct]}`);
+            }
+
+            // Move to next question or finish
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < 3) {
+                    loadQuestion();
+                } else {
+                    finishQuiz();
+                }
+            }, 1800);
+        }
+
+        function handleTimeOut() {
+            if (!isAnsweringAllowed) return;
+            isAnsweringAllowed = false;
+
+            const currentQ = currentQuizQuestions[currentQuestionIndex];
+            const optionButtons = optionsContainer.querySelectorAll('button');
+
+            // Highlight Correct Option
+            const correctBtn = optionButtons[currentQ.correct];
+            correctBtn.classList.add('border-emerald-500', 'bg-emerald-50');
+
+            showFeedback(false, `انتهى الوقت! الإجابة الصحيحة: ${currentQ.options[currentQ.correct]}`);
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < 3) {
+                    loadQuestion();
+                } else {
+                    finishQuiz();
+                }
+            }, 1800);
+        }
+
+        function showFeedback(isSuccess, message) {
+            feedbackBox.textContent = message;
+            feedbackBox.className = isSuccess 
+                ? "mt-6 p-4 rounded-xl text-center font-bold text-sm bg-emerald-100 text-emerald-800 border border-emerald-300 block animate-bounce-short"
+                : "mt-6 p-4 rounded-xl text-center font-bold text-sm bg-brand-lightRed text-brand-red border border-brand-red/30 block";
+        }
+
+        function finishQuiz() {
+            quizScreen.classList.add('hidden');
+
+            if (score === 3) {
+                // Unlocked Discount
+                successScreen.classList.remove('hidden');
+                triggerConfetti();
+            } else {
+                // Failed - Prompt Retry
+                failScreen.classList.remove('hidden');
+                document.getElementById('failReasonText').textContent = 
+                    `حصلت على ${score} من 3 إجابات صحيحة. تحتاج للحصول على 3/3 لفتح الخصم الخاص بك. حاول مجدداً، الأسئلة تتغير دائماً!`;
+            }
+        }
+
+        // Confetti Celebration
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 },
+                    colors: ['#E52321', '#FF4D4D', '#10B981', '#FFD700']
+                });
+            }
+        }
+
+        // Copy Coupon to Clipboard
+        function copyCouponCode() {
+            const code = document.getElementById('couponCode').innerText.trim();
+            
+            // Clipboard execution with iframe compatibility
+            const tempInput = document.createElement('input');
+            tempInput.value = code;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            // Toast Feedback
+            const originalHTML = copyCouponBtn.innerHTML;
+            copyCouponBtn.innerHTML = `<i class="fa-solid fa-check text-emerald-600"></i> <span class="text-emerald-600">تم النسخ بنجاح!</span>`;
+            copyCouponBtn.classList.add('bg-emerald-50');
+
+            setTimeout(() => {
+                copyCouponBtn.innerHTML = originalHTML;
+                copyCouponBtn.classList.remove('bg-emerald-50');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
